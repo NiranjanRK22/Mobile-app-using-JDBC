@@ -10,7 +10,11 @@ import java.util.List;
 import com.mobileapp.exception.IdNotFoundException;
 import com.mobileapp.exception.MobileNotFoundException;
 import com.mobileapp.model.Mobile;
-
+/**
+ * 
+ * @author NiranjanRamakrishna
+ *
+ */
 public class MobileRepositoryImpl implements IMobileRepository {
     static Connection connection;
 	@Override
@@ -18,7 +22,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 		PreparedStatement statement = null;
 		try  {
 			connection = ModelDAO.openConnection();
-			statement = connection.prepareStatement(Queries.InsertQuery);
+			statement = connection.prepareStatement(Queries.INSERTQUERY);
 			statement.setString(1, mobile.getModel());
 			statement.setString(2, mobile.getBrand());
 			statement.setString(3, mobile.getOs());
@@ -35,7 +39,6 @@ public class MobileRepositoryImpl implements IMobileRepository {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			ModelDAO.closeConnection();
@@ -50,7 +53,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 		PreparedStatement statement = null;
 		try  {
 			connection = ModelDAO.openConnection();
-			statement = connection.prepareStatement(Queries.UpdateQuery);
+			statement = connection.prepareStatement(Queries.UPDATEQUERY);
 			statement.setInt(1, mobileId);
 			statement.setDouble(2, price);
 			boolean result = statement.execute();
@@ -64,7 +67,6 @@ public class MobileRepositoryImpl implements IMobileRepository {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				ModelDAO.closeConnection();
@@ -81,7 +83,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 		Mobile mobile = null;
 		//List<Mobile> mobileList = new ArrayList<>();
 		try  {
-		statement = connection.prepareStatement(Queries.SelectByIdQuery);
+		statement = connection.prepareStatement(Queries.SELECTBYIDQUERY);
 		statement.setInt(1, mobileId);
 		resultset = statement.executeQuery();
 		while (resultset.next())  {
@@ -104,7 +106,6 @@ public class MobileRepositoryImpl implements IMobileRepository {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			ModelDAO.closeConnection();
@@ -118,7 +119,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 		PreparedStatement statement = null;
 		Connection connection = ModelDAO.openConnection();
 		try  {
-			statement = connection.prepareStatement(Queries.DeleteQuery);
+			statement = connection.prepareStatement(Queries.DELETEQUERY);
 			statement.setInt(1,  mobileId);
 			boolean result = statement.execute();
 			System.out.println(result);
@@ -131,7 +132,6 @@ public class MobileRepositoryImpl implements IMobileRepository {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			ModelDAO.closeConnection();
@@ -146,7 +146,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 		ResultSet resultset = null;
 		List<Mobile> mobileList = new ArrayList<>();
 		try  {
-		statement = connection.prepareStatement(Queries.SelectAllQuery);
+		statement = connection.prepareStatement(Queries.SELECTALLQUERY);
 		resultset = statement.executeQuery();
 		while (resultset.next())  {
 			String model = resultset.getString("model");
@@ -183,7 +183,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 		ResultSet resultset = null;
 		List<Mobile> mobileList = new ArrayList<>();
 		try  {
-		statement = connection.prepareStatement(Queries.GetByBrandQuery);
+		statement = connection.prepareStatement(Queries.GETBYBRAND);
 		statement.setString(1, brand);
 		resultset = statement.executeQuery();
 		while (resultset.next())  {
@@ -210,7 +210,6 @@ public class MobileRepositoryImpl implements IMobileRepository {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			ModelDAO.closeConnection();
@@ -226,7 +225,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 		ResultSet resultset = null;
 		List<Mobile> mobileList = new ArrayList<>();
 		try  {
-		statement = connection.prepareStatement(Queries.GetByBrandModelQuery);
+		statement = connection.prepareStatement(Queries.GETBYBRANDMODEL);
 		statement.setString(1, brand);
 		statement.setString(2, model + "%");
 		resultset = statement.executeQuery();
@@ -242,7 +241,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 
 		}
 		if (mobileList.isEmpty()) {
-			throw new MobileNotFoundException("mobile with this brand not found");
+			throw new MobileNotFoundException("mobile with this brand and model is not found");
 		}
 			
 		
@@ -271,7 +270,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 		ResultSet resultset = null;
 		List<Mobile> mobileList = new ArrayList<>();
 		try  {
-		statement = connection.prepareStatement(Queries.GetByOsQuery);
+		statement = connection.prepareStatement(Queries.GETBYOS);
 		statement.setString(1, os);
 		resultset = statement.executeQuery();
 		while (resultset.next())  {
@@ -315,7 +314,7 @@ public class MobileRepositoryImpl implements IMobileRepository {
 		ResultSet resultset = null;
 		List<Mobile> mobileList = new ArrayList<>();
 		try  {
-		statement = connection.prepareStatement(Queries.GetByPriceQuery);
+		statement = connection.prepareStatement(Queries.GETBYPRICE);
 		statement.setDouble(1, lowPrice);
 		resultset = statement.executeQuery();
 		while (resultset.next())  {
@@ -341,7 +340,6 @@ public class MobileRepositoryImpl implements IMobileRepository {
 				try {
 					statement.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			ModelDAO.closeConnection();

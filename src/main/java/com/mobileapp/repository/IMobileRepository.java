@@ -5,7 +5,11 @@ import java.util.List;
 import com.mobileapp.exception.IdNotFoundException;
 import com.mobileapp.exception.MobileNotFoundException;
 import com.mobileapp.model.Mobile;
-
+/**
+ * 
+ * @author NiranjanRamakrishna
+ *
+ */
 public interface IMobileRepository {
 	//called by admin
     void addMobile(Mobile mobile);

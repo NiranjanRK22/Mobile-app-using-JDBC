@@ -25,7 +25,6 @@ public class MobileServiceImpl implements IMobileService {
 
 	@Override
 	public Mobile getById(int mobileId) throws IdNotFoundException {
-		// TODO Auto-generated method stub
 		return mobileRepository
 				.findById(mobileId);
 	}
@@ -49,7 +48,6 @@ public class MobileServiceImpl implements IMobileService {
 
 	@Override
 	public List<Mobile> getByBrand(String brand) throws MobileNotFoundException {
-		// TODO Auto-generated method stub
 		return mobileRepository.findByBrand(brand).stream()
 				.sorted((o1, o2) -> o1.getModel().compareTo(o2.getModel()))
 				.collect(Collectors.toList());
@@ -57,7 +55,6 @@ public class MobileServiceImpl implements IMobileService {
 
 	@Override
 	public List<Mobile> getByBrandAndModel(String brand, String model) throws MobileNotFoundException {
-		// TODO Auto-generated method stub
 		return mobileRepository.findByBrandAndModel(brand, model).stream()
 				.sorted((o1, o2) -> o1.getModel().compareTo(o2.getModel()))
 				.collect(Collectors.toList());
@@ -65,7 +62,6 @@ public class MobileServiceImpl implements IMobileService {
 
 	@Override
 	public List<Mobile> getByOs(String os) throws MobileNotFoundException {
-		// TODO Auto-generated method stub
 		return mobileRepository.findByOs(os).stream()
 				.sorted((o1, o2) -> o1.getModel().compareTo(o2.getModel()))
 				.collect(Collectors.toList());
@@ -73,7 +69,6 @@ public class MobileServiceImpl implements IMobileService {
 
 	@Override
 	public List<Mobile> getByLesserPrice(double lowPrice) throws MobileNotFoundException {
-		// TODO Auto-generated method stub
 		return mobileRepository.findByLesserPrice(lowPrice).stream()
 				.sorted((o1, o2) -> o1.getModel().compareTo(o2.getModel()))
 				.collect(Collectors.toList());
